@@ -26,7 +26,7 @@
         if (markdown && !vditorContainer.hasChildNodes()) {
           Vditor.preview(vditorContainer, markdown, {
             markdown: {
-              toc: false,
+              toc: true,
               mark: true,
               footnotes: true,
               autoSpace: true,
