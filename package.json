@@ -1,6 +1,6 @@
 {
   "name": "confluence-enhance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Confluence页面增强工具，提供Vditor Markdown渲染切换功能",
   "main": "dist/vditor-toggle.min.js",
   "files": [
