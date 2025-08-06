@@ -21,18 +21,18 @@
 在您的Confluence页面中添加以下代码：
 
 ```html
+<!-- 引入Vditor依赖 --> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" /> 
+<script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
+
 <!-- 引入CSS样式 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1/dist/vditor-toggle.min.css">
-
-<!-- 引入Vditor依赖 -->
-<script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"></script>
-
 <!-- 引入本工具 -->
 <script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1/dist/vditor-toggle.min.js"></script>
 
 <!-- 页面结构 -->
 <div class="vditor-toggle-container">
-  <button id="toggleVditorBtn" class="vditor-toggle-btn">显示 Vditor 渲染</button>
+  <button id="toggleVditorBtn" class="vditor-toggle-btn">显示 Markdown 渲染</button>
 </div>
 <div id="vditor-content"></div>
 ```

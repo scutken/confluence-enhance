@@ -54,7 +54,7 @@
         if (isVditorView) {
           pre.style.display = 'none';
           vditorContainer.style.display = 'block';
-          toggleBtn.textContent = '显示原文';
+          toggleBtn.textContent = '显示 Markdown 原文';
           initVditorPreview();
         } else {
           vditorContainer.style.display = 'none';
