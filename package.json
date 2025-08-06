@@ -1,0 +1,58 @@
+{
+  "name": "confluence-enhance",
+  "version": "1.0.0",
+  "description": "Confluence页面增强工具，提供Vditor Markdown渲染切换功能",
+  "main": "dist/vditor-toggle.min.js",
+  "files": [
+    "dist/",
+    "src/",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "terser src/vditor-toggle.js -o dist/vditor-toggle.min.js --compress --mangle --source-map",
+    "build:css": "cleancss -o dist/vditor-toggle.min.css src/vditor-toggle.css --source-map",
+    "dev": "npm run build && npm run serve",
+    "serve": "http-server . -p 8080",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "test": "echo \"暂无测试\" && exit 0",
+    "release": "npm run build && npm version patch && git push --follow-tags",
+    "release:minor": "npm run build && npm version minor && git push --follow-tags",
+    "release:major": "npm run build && npm version major && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/confluence-enhance.git"
+  },
+  "keywords": [
+    "confluence",
+    "vditor",
+    "markdown",
+    "cdn",
+    "jsdelivr",
+    "enhancement",
+    "toggle"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/confluence-enhance/issues"
+  },
+  "homepage": "https://github.com/yourusername/confluence-enhance#readme",
+  "devDependencies": {
+    "terser": "^5.19.0",
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.45.0",
+    "http-server": "^14.1.1"
+  },
+  "peerDependencies": {
+    "vditor": "^3.0.0"
+  },
+  "jsdelivr": "dist/vditor-toggle.min.js",
+  "unpkg": "dist/vditor-toggle.min.js",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

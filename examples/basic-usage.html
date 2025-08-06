@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confluence Enhance - 基本使用示例</title>
+    
+    <!-- 引入Vditor样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.css" />
+    
+    <!-- 引入本项目样式 -->
+    <link rel="stylesheet" href="../src/vditor-toggle.css">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .demo-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        
+        .conf-macro.output-block[data-macro-name='noformat'] {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confluence Enhance 使用示例</h1>
+    
+    <div class="demo-section">
+        <h2>基本功能演示</h2>
+        <p>下面是一个包含Markdown内容的示例，点击按钮可以在原始文本和渲染效果之间切换：</p>
+        
+        <!-- 切换按钮容器 -->
+        <div class="vditor-toggle-container">
+            <button id="toggleVditorBtn" class="vditor-toggle-btn">显示 Vditor 渲染</button>
+        </div>
+        
+        <!-- Vditor渲染容器 -->
+        <div id="vditor-content"></div>
+        
+        <!-- 原始Markdown内容 -->
+        <div class="conf-macro output-block" data-macro-name="noformat"># 示例Markdown文档
+
+## 功能特性
+
+- **粗体文本** 和 *斜体文本*
+- `行内代码` 和代码块
+- [链接示例](https://github.com)
+
+## 代码示例
+
+```javascript
+function hello() {
+    console.log('Hello, World!');
+}
+```
+
+## 数学公式
+
+行内公式：$E = mc^2$
+
+块级公式：
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+## 表格
+
+| 功能 | 支持 | 说明 |
+|------|------|------|
+| 代码高亮 | ✅ | 支持多种语言 |
+| 数学公式 | ✅ | KaTeX渲染 |
+| 目录生成 | ✅ | 自动生成TOC |
+
+## 引用
+
+> 这是一个引用示例
+> 支持多行引用
+
+## 列表
+
+1. 有序列表项1
+2. 有序列表项2
+   - 嵌套无序列表
+   - 另一个嵌套项
+
+## 任务列表
+
+- [x] 已完成的任务
+- [ ] 待完成的任务
+- [ ] 另一个待完成的任务</div>
+    </div>
+    
+    <div class="demo-section">
+        <h2>CDN引入方式</h2>
+        <h3>1. 基本引入</h3>
+        <pre><code>&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.css"&gt;
+
+&lt;!-- Vditor依赖 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 本工具 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.js"&gt;&lt;/script&gt;</code></pre>
+        
+        <h3>2. 指定版本（推荐）</h3>
+        <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"&gt;&lt;/script&gt;</code></pre>
+        
+        <h3>3. 其他CDN选项</h3>
+        <pre><code>&lt;!-- unpkg --&gt;
+&lt;script src="https://unpkg.com/confluence-enhance@latest/dist/vditor-toggle.min.js"&gt;&lt;/script&gt;</code></pre>
+    </div>
+    
+    <!-- 引入Vditor -->
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"></script>
+    
+    <!-- 引入本项目脚本 -->
+    <script src="../src/vditor-toggle.js"></script>
+</body>
+</html>

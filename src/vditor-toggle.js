@@ -6,19 +6,19 @@
   
   window.VditorToggle = {
     init: function() {
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         VditorToggle.setup();
       });
     },
     
     setup: function() {
       // 获取原始markdown文本块
-      let pre = document.querySelector(
-        ".conf-macro.output-block[data-macro-name='noformat']"
+      const pre = document.querySelector(
+        '.conf-macro.output-block[data-macro-name=\'noformat\']'
       );
-      let vditorContainer = document.getElementById("vditor-content");
-      let toggleBtn = document.getElementById("toggleVditorBtn");
-      let markdown = pre ? pre.textContent.trim() : "";
+      const vditorContainer = document.getElementById('vditor-content');
+      const toggleBtn = document.getElementById('toggleVditorBtn');
+      const markdown = pre ? pre.textContent.trim() : '';
       let isVditorView = true;
 
       // 初始化渲染
@@ -32,17 +32,17 @@
               autoSpace: true,
             },
             math: {
-              engine: "KaTeX",
+              engine: 'KaTeX',
               inlineDigit: true,
             },
             hljs: {
-              style: "github",
+              style: 'github',
               lineNumber: true,
             },
             anchor: 2,
-            lang: "zh_CN",
+            lang: 'zh_CN',
             theme: {
-              current: "light",
+              current: 'light',
             },
           });
         }
@@ -52,14 +52,14 @@
       function toggleView() {
         isVditorView = !isVditorView;
         if (isVditorView) {
-          pre.style.display = "none";
-          vditorContainer.style.display = "block";
-          toggleBtn.textContent = "显示原文";
+          pre.style.display = 'none';
+          vditorContainer.style.display = 'block';
+          toggleBtn.textContent = '显示原文';
           initVditorPreview();
         } else {
-          vditorContainer.style.display = "none";
-          pre.style.display = "";
-          toggleBtn.textContent = "显示 Vditor 渲染";
+          vditorContainer.style.display = 'none';
+          pre.style.display = '';
+          toggleBtn.textContent = '显示 Vditor 渲染';
         }
       }
 
@@ -67,14 +67,14 @@
         // 将按钮插入到原文内容元素的上方
         pre.parentNode.insertBefore(document.querySelector('#toggleVditorBtn').parentNode, pre);
         
-        toggleBtn.addEventListener("click", toggleView);
+        toggleBtn.addEventListener('click', toggleView);
         
         // 默认设置：隐藏原文，显示渲染
-        pre.style.display = "none";
-        vditorContainer.style.display = "block";
+        pre.style.display = 'none';
+        vditorContainer.style.display = 'block';
         initVditorPreview();
       } else {
-        toggleBtn.style.display = "none";
+        toggleBtn.style.display = 'none';
       }
     }
   };
