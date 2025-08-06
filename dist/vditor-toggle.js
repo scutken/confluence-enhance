@@ -1,15 +1,16 @@
 (function() {
   'use strict';
-  
+
   // 避免重复加载
   if (window.VditorToggle) return;
-  
+
   window.VditorToggle = {
     init: function() {
       document.addEventListener('DOMContentLoaded', function () {
         VditorToggle.setup();
       });
     },
+    showSvgModal: null, // 将在setup中设置
 
     // 创建必需的DOM元素
     createRequiredElements: function(pre) {
@@ -445,9 +446,80 @@
           object-fit: contain;
           transition: transform 0.1s ease;
           transform-origin: center center;
+          pointer-events: auto;
         `;
 
         svgContainer.appendChild(clonedSvg);
+
+        // 创建重置按钮
+        const resetButton = document.createElement('button');
+        resetButton.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+        `;
+        resetButton.title = '重置视图 (恢复到原始大小和位置)';
+        resetButton.style.cssText = `
+          position: absolute;
+          bottom: 20px;
+          right: 20px;
+          width: 48px;
+          height: 48px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+          color: #475569;
+          font-size: 0;
+          cursor: pointer;
+          z-index: 10002;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(8px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          outline: none;
+        `;
+
+        resetButton.addEventListener('mouseenter', function() {
+          this.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(248, 250, 252, 1))';
+          this.style.transform = 'scale(1.1) translateY(-2px)';
+          this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15)';
+          this.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+          this.style.color = '#334155';
+        });
+
+        resetButton.addEventListener('mouseleave', function() {
+          this.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95))';
+          this.style.transform = 'scale(1) translateY(0)';
+          this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)';
+          this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+          this.style.color = '#475569';
+        });
+
+        resetButton.addEventListener('mousedown', function() {
+          this.style.transform = 'scale(1.05) translateY(-1px)';
+        });
+
+        resetButton.addEventListener('mouseup', function() {
+          this.style.transform = 'scale(1.1) translateY(-2px)';
+        });
+
+        // 防止修饰键造成的样式问题
+        resetButton.addEventListener('focus', function() {
+          // 保持一致的样式，不受focus状态影响
+          this.blur();
+        });
+
+        resetButton.addEventListener('keydown', function(e) {
+          // 防止键盘操作造成的样式变化
+          e.preventDefault();
+        });
+
+        svgContainer.appendChild(resetButton);
         modal.appendChild(svgContainer);
 
         // 缩放和拖拽变量
@@ -458,10 +530,32 @@
         let translateX = 0;
         let translateY = 0;
 
+
+
+
+
+
         // 更新 SVG 变换
         function updateTransform() {
           clonedSvg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         }
+
+        // 重置视图到初始状态
+        function resetView() {
+          scale = 1;
+          translateX = 0;
+          translateY = 0;
+          updateTransform();
+          svgContainer.style.cursor = 'grab';
+        }
+
+        // 重置按钮点击事件
+        resetButton.addEventListener('click', function(e) {
+          e.stopPropagation();
+          resetView();
+        });
+
+
 
         // 滚轮缩放
         svgContainer.addEventListener('wheel', function(e) {
@@ -471,9 +565,62 @@
 
           // 限制缩放范围
           if (newScale >= 0.5 && newScale <= 5) {
+            // 获取鼠标位置相对于容器的坐标
+            const rect = svgContainer.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // 计算鼠标位置相对于容器中心的偏移
+            const containerCenterX = rect.width / 2;
+            const containerCenterY = rect.height / 2;
+            const offsetX = mouseX - containerCenterX;
+            const offsetY = mouseY - containerCenterY;
+
+            // 计算缩放前鼠标位置在SVG坐标系中的位置
+            const svgMouseX = (offsetX - translateX) / scale;
+            const svgMouseY = (offsetY - translateY) / scale;
+
+            // 更新缩放比例
             scale = newScale;
+
+            // 计算新的位移，使鼠标位置保持不变
+            translateX = offsetX - svgMouseX * scale;
+            translateY = offsetY - svgMouseY * scale;
+
             updateTransform();
           }
+        });
+
+        // 双击放大功能
+        clonedSvg.addEventListener('dblclick', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (scale === 1) {
+            // 放大到2倍，并让点击位置居中
+            const rect = svgContainer.getBoundingClientRect();
+
+            // 计算点击位置相对于SVG中心的偏移
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            const containerCenterX = rect.width / 2;
+            const containerCenterY = rect.height / 2;
+
+            // 计算点击位置相对于容器中心的偏移
+            const offsetX = clickX - containerCenterX;
+            const offsetY = clickY - containerCenterY;
+
+            // 放大后，调整位移使点击位置居中
+            scale = 2;
+            translateX = -offsetX;
+            translateY = -offsetY;
+          } else {
+            // 恢复到原始大小
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+          }
+          updateTransform();
         });
 
         // 鼠标拖拽
@@ -487,6 +634,7 @@
           }
         });
 
+        // 鼠标移动处理
         document.addEventListener('mousemove', function(e) {
           if (isDragging) {
             translateX = e.clientX - startX;
@@ -495,6 +643,7 @@
           }
         });
 
+        // 鼠标释放处理
         document.addEventListener('mouseup', function() {
           if (isDragging) {
             isDragging = false;
@@ -606,6 +755,8 @@
 
         modal.appendChild(closeBtn);
         document.body.appendChild(modal);
+
+
       }
 
       // 创建大纲容器
@@ -615,10 +766,10 @@
         outlineContainer.className = 'vditor-outline';
         outlineContainer.style.cssText = `
           position: fixed;
-          top: 80px;
+          top: 30vh;
           right: 20px;
           width: 200px;
-          max-height: 60vh;
+          max-height: 65vh;
           overflow-y: auto;
           background: #fff;
           border: 1px solid #e1e4e8;
@@ -772,6 +923,9 @@
       } else {
         toggleBtn.style.display = 'none';
       }
+
+      // 暴露showSvgModal函数供外部调用
+      window.VditorToggle.showSvgModal = showSvgModal;
     }
   };
   

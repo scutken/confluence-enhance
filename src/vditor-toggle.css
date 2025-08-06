@@ -231,6 +231,22 @@
   transform: scale(1.1);
 }
 
+/* 防止修饰键（Shift、Ctrl、Alt等）造成的样式问题 */
+.svg-modal button:focus,
+.svg-modal button:focus-visible,
+.svg-modal button:active {
+  outline: none !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 确保在所有状态下保持一致的外观 */
+.svg-modal button:focus:not(:hover) {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95)) !important;
+  transform: scale(1) !important;
+  color: #475569 !important;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -254,6 +270,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+
 
 /* 响应式设计 */
 @media (max-width: 768px) {
