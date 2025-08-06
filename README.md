@@ -30,11 +30,8 @@
 <!-- 引入本工具 -->
 <script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1/dist/vditor-toggle.min.js"></script>
 
-<!-- 页面结构 -->
-<div class="vditor-toggle-container">
-  <button id="toggleVditorBtn" class="vditor-toggle-btn">显示 Markdown 渲染</button>
-</div>
-<div id="vditor-content"></div>
+<!-- 页面结构 - 无需手动添加，JavaScript会自动创建 -->
+<!-- 工具会自动在Confluence markdown内容块前插入切换按钮和渲染容器 -->
 ```
 
 ### 指定版本引入
@@ -65,7 +62,10 @@
 
 1. 确保您的Confluence页面包含带有 `data-macro-name='noformat'` 属性的Markdown内容块
 2. 引入必要的CSS和JavaScript文件
-3. 工具会自动检测页面内容并添加切换功能
+3. 工具会自动检测页面内容并创建所需的DOM元素（切换按钮和渲染容器）
+4. 无需手动添加任何HTML结构，一切都由JavaScript自动处理
+
+**注意：** 从v1.1.0版本开始，您不再需要在页面中预先添加 `.vditor-toggle-container` 和 `#vditor-content` 元素，工具会自动创建这些必需的DOM结构。
 
 ### 高级配置
 

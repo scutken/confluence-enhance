@@ -10,15 +10,53 @@
         VditorToggle.setup();
       });
     },
-    
+
+    // 创建必需的DOM元素
+    createRequiredElements: function(pre) {
+      // 创建切换按钮容器
+      const toggleContainer = document.createElement('div');
+      toggleContainer.className = 'vditor-toggle-container';
+
+      // 创建切换按钮
+      const toggleBtn = document.createElement('button');
+      toggleBtn.id = 'toggleVditorBtn';
+      toggleBtn.className = 'vditor-toggle-btn';
+      toggleBtn.textContent = '显示 Markdown 渲染';
+
+      // 创建Vditor内容容器
+      const vditorContainer = document.createElement('div');
+      vditorContainer.id = 'vditor-content';
+
+      // 将按钮添加到容器
+      toggleContainer.appendChild(toggleBtn);
+
+      // 将容器插入到pre元素之前
+      pre.parentNode.insertBefore(toggleContainer, pre);
+      pre.parentNode.insertBefore(vditorContainer, pre.nextSibling);
+
+      return { vditorContainer, toggleBtn, toggleContainer };
+    },
+
     setup: function() {
       // 获取原始markdown文本块
       const pre = document.querySelector(
         '.conf-macro.output-block[data-macro-name=\'noformat\']'
       );
-      const vditorContainer = document.getElementById('vditor-content');
-      const toggleBtn = document.getElementById('toggleVditorBtn');
-      const markdown = pre ? pre.textContent.trim() : '';
+
+      if (!pre) {
+        console.warn('VditorToggle: 未找到Confluence markdown内容块');
+        return;
+      }
+
+      const markdown = pre.textContent.trim();
+      if (!markdown) {
+        console.warn('VditorToggle: markdown内容为空');
+        return;
+      }
+
+      // 创建必需的DOM元素
+      const { vditorContainer, toggleBtn, toggleContainer } = this.createRequiredElements(pre);
+
       let isVditorView = true;
       let isOutlineVisible = true;
 
@@ -700,15 +738,7 @@
       if (pre) {
         // 创建并添加大纲开关组件
         const outlineSwitch = createOutlineToggleSwitch();
-        const toggleContainer = document.querySelector('.vditor-toggle-container');
-        if (toggleContainer) {
-          toggleContainer.appendChild(outlineSwitch);
-
-          // 确保按钮容器在正确位置（如果还没有移动过）
-          if (toggleContainer.parentNode !== pre.parentNode) {
-            pre.parentNode.insertBefore(toggleContainer, pre);
-          }
-        }
+        toggleContainer.appendChild(outlineSwitch);
 
         // 绑定事件
         toggleBtn.addEventListener('click', toggleView);

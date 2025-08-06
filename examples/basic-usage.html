@@ -45,13 +45,8 @@
         <h2>基本功能演示</h2>
         <p>下面是一个包含Markdown内容的示例，点击按钮可以在原始文本和渲染效果之间切换：</p>
         
-        <!-- 切换按钮容器 -->
-        <div class="vditor-toggle-container">
-            <button id="toggleVditorBtn" class="vditor-toggle-btn">显示预览</button>
-        </div>
-        
-        <!-- Vditor渲染容器 -->
-        <div id="vditor-content"></div>
+        <!-- 注意：从v1.1.0开始，不再需要手动添加这些DOM元素 -->
+        <!-- JavaScript会自动创建切换按钮和渲染容器 -->
         
         <!-- 原始Markdown内容 -->
         <div class="conf-macro output-block" data-macro-name="noformat"># 示例Markdown文档
