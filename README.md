@@ -22,13 +22,13 @@
 
 ```html
 <!-- 引入CSS样式 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1/dist/vditor-toggle.min.css">
 
 <!-- 引入Vditor依赖 -->
 <script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"></script>
 
 <!-- 引入本工具 -->
-<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1/dist/vditor-toggle.min.js"></script>
 
 <!-- 页面结构 -->
 <div class="vditor-toggle-container">
@@ -42,15 +42,18 @@
 为了确保稳定性，建议指定具体版本：
 
 ```html
-<!-- 使用特定版本 -->
+<!-- 使用特定版本（压缩版） -->
 <script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"></script>
+
+<!-- 使用特定版本（原始版，便于调试） -->
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1.0.0/dist/vditor-toggle.js"></script>
 ```
 
 ### 其他CDN选项
 
 ```html
 <!-- unpkg CDN -->
-<script src="https://unpkg.com/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
+<script src="https://unpkg.com/confluence-enhance@1/dist/vditor-toggle.min.js"></script>
 
 <!-- 国内CDN（如果可用） -->
 <script src="https://cdn.bootcdn.net/ajax/libs/confluence-enhance/1.0.0/vditor-toggle.min.js"></script>
@@ -141,9 +144,9 @@ npm run release:major
 
 ### 版本选择
 
+- `@v1` - 主版本最新（推荐生产环境）
+- `@v1.0.0` - 指定版本（最稳定）
 - `@latest` - 最新版本（不推荐生产环境）
-- `@v1.0.0` - 指定版本（推荐）
-- `@v1` - 主版本最新（较安全）
 
 ### 缓存策略
 

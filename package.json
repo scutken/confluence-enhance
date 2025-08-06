@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "build": "npm run build:js && npm run build:css",
-    "build:js": "terser src/vditor-toggle.js -o dist/vditor-toggle.min.js --compress --mangle --source-map",
-    "build:css": "cleancss -o dist/vditor-toggle.min.css src/vditor-toggle.css --source-map",
+    "build:js": "cp src/vditor-toggle.js dist/vditor-toggle.js && terser src/vditor-toggle.js -o dist/vditor-toggle.min.js --compress --mangle --source-map",
+    "build:css": "cp src/vditor-toggle.css dist/vditor-toggle.css && cleancss -o dist/vditor-toggle.min.css src/vditor-toggle.css --source-map",
     "dev": "npm run build && npm run serve",
     "serve": "http-server . -p 8080",
     "lint": "eslint src/**/*.js",
