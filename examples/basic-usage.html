@@ -6,10 +6,10 @@
     <title>Confluence Enhance - 基本使用示例</title>
     
     <!-- 引入Vditor样式 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.css" />
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
+
     <!-- 引入本项目样式 -->
-    <link rel="stylesheet" href="../src/vditor-toggle.css">
+    <link rel="stylesheet" href="../dist/vditor-toggle.css">
     
     <style>
         body {
@@ -47,7 +47,7 @@
         
         <!-- 切换按钮容器 -->
         <div class="vditor-toggle-container">
-            <button id="toggleVditorBtn" class="vditor-toggle-btn">显示 Vditor 渲染</button>
+            <button id="toggleVditorBtn" class="vditor-toggle-btn">显示预览</button>
         </div>
         
         <!-- Vditor渲染容器 -->
@@ -103,7 +103,55 @@ $$
 
 - [x] 已完成的任务
 - [ ] 待完成的任务
-- [ ] 另一个待完成的任务</div>
+- [ ] 另一个待完成的任务
+
+## Mermaid 图表
+
+### 流程图
+```mermaid
+graph TD
+    A[开始] --> B{是否登录?}
+    B -->|是| C[显示主页]
+    B -->|否| D[跳转登录页]
+    D --> E[用户输入]
+    E --> F{验证通过?}
+    F -->|是| C
+    F -->|否| G[显示错误]
+    G --> E
+    C --> H[结束]
+```
+
+### 时序图
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant B as 浏览器
+    participant S as 服务器
+    participant D as 数据库
+
+    U->>B: 访问页面
+    B->>S: 发送请求
+    S->>D: 查询数据
+    D-->>S: 返回结果
+    S-->>B: 响应数据
+    B-->>U: 显示页面
+```
+
+### 甘特图
+```mermaid
+gantt
+    title 项目开发计划
+    dateFormat  YYYY-MM-DD
+    section 设计阶段
+    需求分析      :done,    des1, 2024-01-01,2024-01-05
+    UI设计       :done,    des2, 2024-01-06,2024-01-15
+    section 开发阶段
+    前端开发     :active,  dev1, 2024-01-16,2024-02-15
+    后端开发     :         dev2, 2024-01-20,2024-02-20
+    section 测试阶段
+    单元测试     :         test1, 2024-02-16,2024-02-25
+    集成测试     :         test2, 2024-02-21,2024-03-01
+```</div>
     </div>
     
     <div class="demo-section">
@@ -127,9 +175,9 @@ $$
     </div>
     
     <!-- 引入Vditor -->
-    <script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
+
     <!-- 引入本项目脚本 -->
-    <script src="../src/vditor-toggle.js"></script>
+    <script src="../dist/vditor-toggle.js"></script>
 </body>
 </html>
