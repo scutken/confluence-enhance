@@ -119,10 +119,10 @@ A: 建议使用具体版本号而不是`@latest`：
 
 ```html
 <!-- 推荐：指定版本 -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"></script>
 
 <!-- 不推荐：使用latest -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
 ```
 
 ### Q: 文件大小是多少？
@@ -160,7 +160,7 @@ A: 欢迎贡献！请查看 [CONTRIBUTING.md](../CONTRIBUTING.md) 了解详细�
 A: 开发环境设置：
 
 ```bash
-git clone https://github.com/yourusername/confluence-enhance.git
+git clone https://github.com/scutken/confluence-enhance.git
 cd confluence-enhance
 npm install
 npm run dev
@@ -180,7 +180,7 @@ A: 请在GitHub Issues中：
 
 如果以上FAQ没有解决您的问题，请：
 
-1. 搜索 [GitHub Issues](https://github.com/yourusername/confluence-enhance/issues)
+1. 搜索 [GitHub Issues](https://github.com/scutken/confluence-enhance/issues)
 2. 查看 [项目文档](../README.md)
 3. 创建新的Issue描述您的问题
 

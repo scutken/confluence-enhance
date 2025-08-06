@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Confluence Vditor Toggle
-// @namespace    https://github.com/yourusername/confluence-enhance
+// @namespace    https://github.com/scutken/confluence-enhance
 // @version      1.0.0
 // @description  在Confluence页面中添加Vditor Markdown渲染切换功能
 // @author       Your Name
@@ -9,7 +9,7 @@
 // @grant        none
 // @require      https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js
 // @resource     VditorCSS https://cdn.jsdelivr.net/npm/vditor@3/dist/index.css
-// @resource     ToggleCSS https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.css
+// @resource     ToggleCSS https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.css
 // ==/UserScript==
 
 (function() {
@@ -27,7 +27,7 @@
     loadCSS('https://cdn.jsdelivr.net/npm/vditor@3/dist/index.css');
     
     // 加载Toggle CSS
-    loadCSS('https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.css');
+    loadCSS('https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.css');
     
     // 等待页面加载完成
     function waitForElement(selector, callback) {

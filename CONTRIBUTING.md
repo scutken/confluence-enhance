@@ -8,7 +8,7 @@
 
 如果您发现了bug或有功能建议：
 
-1. 首先搜索 [现有Issues](https://github.com/yourusername/confluence-enhance/issues) 确认问题未被报告
+1. 首先搜索 [现有Issues](https://github.com/scutken/confluence-enhance/issues) 确认问题未被报告
 2. 使用相应的Issue模板创建新Issue
 3. 提供详细的问题描述和复现步骤
 
@@ -17,7 +17,7 @@
 1. **Fork项目**
    ```bash
    # 在GitHub上Fork项目，然后克隆到本地
-   git clone https://github.com/yourusername/confluence-enhance.git
+   git clone https://github.com/scutken/confluence-enhance.git
    cd confluence-enhance
    ```
 

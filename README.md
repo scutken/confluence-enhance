@@ -1,7 +1,7 @@
 # Confluence Enhance
 
-[![Build Status](https://github.com/yourusername/confluence-enhance/workflows/Build%20and%20Release/badge.svg)](https://github.com/yourusername/confluence-enhance/actions)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/gh/yourusername/confluence-enhance/badge)](https://www.jsdelivr.com/package/gh/yourusername/confluence-enhance)
+[![Build Status](https://github.com/scutken/confluence-enhance/workflows/Build%20and%20Release/badge.svg)](https://github.com/scutken/confluence-enhance/actions)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/gh/scutken/confluence-enhance/badge)](https://www.jsdelivr.com/package/gh/scutken/confluence-enhance)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 一个用于增强Confluence页面的JavaScript工具，提供Vditor Markdown渲染切换功能。通过jsDelivr CDN全球分发，让您的Confluence页面支持更好的Markdown显示效果。
@@ -22,13 +22,13 @@
 
 ```html
 <!-- 引入CSS样式 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.css">
 
 <!-- 引入Vditor依赖 -->
 <script src="https://cdn.jsdelivr.net/npm/vditor@3/dist/index.min.js"></script>
 
 <!-- 引入本工具 -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@latest/dist/vditor-toggle.min.js"></script>
 
 <!-- 页面结构 -->
 <div class="vditor-toggle-container">
@@ -43,7 +43,7 @@
 
 ```html
 <!-- 使用特定版本 -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@v1.0.0/dist/vditor-toggle.min.js"></script>
 ```
 
 ### 其他CDN选项
@@ -90,7 +90,7 @@ window.VditorToggle.config = {
 
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/confluence-enhance.git
+git clone https://github.com/scutken/confluence-enhance.git
 cd confluence-enhance
 
 # 安装依赖
@@ -180,7 +180,7 @@ jsDelivr提供以下缓存选项：
 如果您遇到问题或有建议，请：
 
 1. 查看 [FAQ](docs/FAQ.md)
-2. 搜索 [Issues](https://github.com/yourusername/confluence-enhance/issues)
+2. 搜索 [Issues](https://github.com/scutken/confluence-enhance/issues)
 3. 创建新的 Issue
 
 ---
