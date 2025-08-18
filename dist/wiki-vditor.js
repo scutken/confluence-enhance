@@ -66,7 +66,7 @@
   window.WikiVditor = {
     init: function() {
       document.addEventListener('DOMContentLoaded', function () {
-        WikiVditor.setup();
+        window.WikiVditor.setup();
       });
     },
     showSvgModal: null, // 将在setup中设置
@@ -109,12 +109,14 @@
       );
 
       if (!pre) {
+        // eslint-disable-next-line no-console
         console.warn('WikiVditor: 未找到Confluence markdown内容块');
         return;
       }
 
       const markdown = pre.textContent.trim();
       if (!markdown) {
+        // eslint-disable-next-line no-console
         console.warn('WikiVditor: markdown内容为空');
         return;
       }
@@ -1003,7 +1005,7 @@
   };
   
   // 自动初始化
-  WikiVditor.init();
+  window.WikiVditor.init();
 })();
 
 
