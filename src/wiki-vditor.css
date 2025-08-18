@@ -1,11 +1,12 @@
-.vditor-toggle-container {
+/* Wiki Vditor 样式 */
+.wiki-vditor-container {
   margin-bottom: 12px;
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-.vditor-toggle-btn {
+.wiki-vditor-btn {
   padding: 6px 12px;
   background-color: #007bff;
   color: white;
@@ -16,7 +17,7 @@
   transition: background-color 0.2s ease;
 }
 
-.vditor-toggle-btn:hover {
+.wiki-vditor-btn:hover {
   opacity: 0.9;
 }
 

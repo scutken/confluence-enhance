@@ -2,12 +2,21 @@
   'use strict';
 
   // 避免重复加载
-  if (window.VditorToggle) return;
+  if (window.WikiVditor) return;
 
-  window.VditorToggle = {
+  // 检查Vditor是否可用（用于非独立版本）
+  function checkVditorAvailability() {
+    if (typeof Vditor === 'undefined') {
+      console.error('WikiVditor: Vditor未找到。请确保已引入Vditor库或使用独立版本。');
+      return false;
+    }
+    return true;
+  }
+
+  window.WikiVditor = {
     init: function() {
       document.addEventListener('DOMContentLoaded', function () {
-        VditorToggle.setup();
+        WikiVditor.setup();
       });
     },
     showSvgModal: null, // 将在setup中设置
@@ -16,12 +25,12 @@
     createRequiredElements: function(pre) {
       // 创建切换按钮容器
       const toggleContainer = document.createElement('div');
-      toggleContainer.className = 'vditor-toggle-container';
+      toggleContainer.className = 'wiki-vditor-container';
 
       // 创建切换按钮
       const toggleBtn = document.createElement('button');
       toggleBtn.id = 'toggleVditorBtn';
-      toggleBtn.className = 'vditor-toggle-btn';
+      toggleBtn.className = 'wiki-vditor-btn';
       toggleBtn.textContent = '显示 Markdown 渲染';
 
       // 创建Vditor内容容器
@@ -39,19 +48,24 @@
     },
 
     setup: function() {
+      // 检查Vditor是否可用（仅在非独立版本中需要）
+      if (!checkVditorAvailability()) {
+        return;
+      }
+
       // 获取原始markdown文本块
       const pre = document.querySelector(
         '.conf-macro.output-block[data-macro-name=\'noformat\']'
       );
 
       if (!pre) {
-        console.warn('VditorToggle: 未找到Confluence markdown内容块');
+        console.warn('WikiVditor: 未找到Confluence markdown内容块');
         return;
       }
 
       const markdown = pre.textContent.trim();
       if (!markdown) {
-        console.warn('VditorToggle: markdown内容为空');
+        console.warn('WikiVditor: markdown内容为空');
         return;
       }
 
@@ -625,13 +639,17 @@
 
         // 鼠标拖拽
         svgContainer.addEventListener('mousedown', function(e) {
-          if (e.target === clonedSvg || e.target === svgContainer) {
-            isDragging = true;
-            startX = e.clientX - translateX;
-            startY = e.clientY - translateY;
-            svgContainer.style.cursor = 'grabbing';
-            e.preventDefault();
+          // 检查是否点击在重置按钮上，如果是则不启动拖拽
+          if (e.target === resetButton || resetButton.contains(e.target)) {
+            return;
           }
+
+          // 允许在SVG容器内的任何位置启动拖拽
+          isDragging = true;
+          startX = e.clientX - translateX;
+          startY = e.clientY - translateY;
+          svgContainer.style.cursor = 'grabbing';
+          e.preventDefault();
         });
 
         // 鼠标移动处理
@@ -656,6 +674,11 @@
         let initialScale = 1;
 
         svgContainer.addEventListener('touchstart', function(e) {
+          // 检查是否触摸在重置按钮上，如果是则不启动拖拽
+          if (e.target === resetButton || resetButton.contains(e.target)) {
+            return;
+          }
+
           if (e.touches.length === 2) {
             // 双指缩放
             const touch1 = e.touches[0];
@@ -666,7 +689,7 @@
             );
             initialScale = scale;
           } else if (e.touches.length === 1) {
-            // 单指拖拽
+            // 单指拖拽 - 允许在SVG容器内的任何位置启动
             isDragging = true;
             const touch = e.touches[0];
             startX = touch.clientX - translateX;
@@ -766,7 +789,7 @@
         outlineContainer.className = 'vditor-outline';
         outlineContainer.style.cssText = `
           position: fixed;
-          top: 30vh;
+          top: 15vh;
           right: 20px;
           width: 200px;
           max-height: 65vh;
@@ -925,10 +948,10 @@
       }
 
       // 暴露showSvgModal函数供外部调用
-      window.VditorToggle.showSvgModal = showSvgModal;
+      window.WikiVditor.showSvgModal = showSvgModal;
     }
   };
   
   // 自动初始化
-  VditorToggle.init();
+  WikiVditor.init();
 })();

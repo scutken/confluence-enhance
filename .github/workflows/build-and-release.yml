@@ -13,19 +13,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '18'
-    
+        bun-version: latest
+
     - name: Install dependencies
-      run: npm ci
+      run: bun install
     
     - name: Run ESLint
-      run: npm run lint
-    
+      run: bun run lint
+
     - name: Run tests
-      run: npm test
+      run: bun test
 
   build:
     needs: lint-and-test
@@ -33,16 +33,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '18'
-    
+        bun-version: latest
+
     - name: Install dependencies
-      run: npm ci
-    
+      run: bun install
+
     - name: Build project
-      run: npm run build
+      run: bun run build
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
@@ -60,17 +60,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '18'
-        
-    
+        bun-version: latest
+
     - name: Install dependencies
-      run: npm ci
-    
+      run: bun install
+
     - name: Build project
-      run: npm run build
+      run: bun run build
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -84,17 +83,14 @@ jobs:
 
           ## jsDelivr CDN 链接
 
-          ### JavaScript
+          ### Wiki Vditor (推荐)
           ```html
-          <script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@${{ github.ref_name }}/dist/vditor-toggle.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@${{ github.ref_name }}/dist/wiki-vditor.min.js"></script>
           ```
 
-          ### CSS
-          ```html
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scutken/confluence-enhance@${{ github.ref_name }}/dist/vditor-toggle.min.css">
-          ```
+          这是一个完整的单文件解决方案，包含所有依赖，无需额外的CSS文件。
         files: |
-          dist/vditor-toggle.min.js
-          dist/vditor-toggle.min.css
+          dist/wiki-vditor.min.js
+          dist/wiki-vditor.js
         draft: false
         prerelease: false

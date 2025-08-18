@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>独立版本测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        .conf-macro.output-block {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        .success-indicator {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚀 独立版本测试</h1>
+        
+        <div class="instructions">
+            <strong>✅ 测试说明：</strong>
+            <ul>
+                <li><strong>单文件部署</strong>：此页面只引入了一个JS文件，无需额外的Vditor依赖</li>
+                <li><strong>完整功能</strong>：包含Markdown渲染、Mermaid图表、SVG放大等所有功能</li>
+                <li><strong>自动初始化</strong>：页面加载后会自动检测并添加切换按钮</li>
+                <li><strong>拖拽测试</strong>：点击Mermaid图表可以打开模态框并测试拖拽功能</li>
+            </ul>
+        </div>
+
+        <div class="success-indicator">
+            <strong>🎉 成功！</strong> 如果你能看到下面的切换按钮，说明独立版本工作正常。
+        </div>
+
+        <!-- 模拟Confluence的markdown内容块 -->
+        <div class="conf-macro output-block" data-macro-name="noformat"># 测试文档
+
+## 功能特性
+
+### 1. Markdown渲染
+- **粗体文本**
+- *斜体文本*
+- `代码片段`
+- [链接示例](https://example.com)
+
+### 2. 数学公式
+行内公式：$E = mc^2$
+
+块级公式：
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+### 3. 代码高亮
+```javascript
+function hello() {
+    console.log('Hello, World!');
+}
+```
+
+### 4. Mermaid图表
+```mermaid
+graph TD
+    A[开始] --> B{条件判断}
+    B -->|是| C[执行操作A]
+    B -->|否| D[执行操作B]
+    C --> E[结束]
+    D --> E
+```
+
+### 5. 表格
+| 功能 | 状态 | 说明 |
+|------|------|------|
+| Markdown渲染 | ✅ | 完全支持 |
+| 数学公式 | ✅ | KaTeX引擎 |
+| 代码高亮 | ✅ | GitHub风格 |
+| Mermaid图表 | ✅ | 支持放大 |
+| SVG拖拽 | ✅ | 模态框交互 |
+
+### 6. 引用
+> 这是一个引用示例。
+> 
+> 独立版本包含了所有必要的依赖，
+> 实现了真正的单文件部署。
+
+### 7. 列表
+1. 第一项
+2. 第二项
+   - 子项目A
+   - 子项目B
+3. 第三项
+
+---
+
+**测试完成！** 如果所有功能都正常显示，说明独立版本构建成功。</div>
+    </div>
+
+    <!-- 只需要引入一个独立的JS文件 -->
+    <script src="../dist/wiki-vditor.min.js"></script>
+    
+    <script>
+        // 验证Vditor是否已加载
+        setTimeout(() => {
+            if (typeof Vditor !== 'undefined') {
+                console.log('✅ Vditor已成功加载');
+                console.log('✅ VditorToggle已成功初始化');
+            } else {
+                console.error('❌ Vditor未加载');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
