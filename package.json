@@ -17,9 +17,9 @@
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     "test": "bun test --timeout 10000",
-    "release": "bun run clean && bun run build && bun version patch && git push --follow-tags",
-    "release:minor": "bun run clean && bun run build && bun version minor && git push --follow-tags",
-    "release:major": "bun run clean && bun run build && bun version major && git push --follow-tags"
+    "release": "bun run clean && bun run build && npm version patch && git push --follow-tags",
+    "release:minor": "bun run clean && bun run build && npm version minor && git push --follow-tags",
+    "release:major": "bun run clean && bun run build && npm version major && git push --follow-tags"
   },
   "repository": {
     "type": "git",
