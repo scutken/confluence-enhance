@@ -1,6 +1,6 @@
 {
   "name": "confluence-enhance",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Confluence页面增强工具 - 包含Wiki Vditor单文件部署解决方案，内嵌Vditor，支持数学公式、Mermaid图表、代码高亮等功能",
   "main": "dist/wiki-vditor.min.js",
   "files": [
