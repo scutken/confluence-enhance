@@ -766,7 +766,7 @@
         outlineContainer.className = 'vditor-outline';
         outlineContainer.style.cssText = `
           position: fixed;
-          top: 30vh;
+          top: 15vh;
           right: 20px;
           width: 200px;
           max-height: 65vh;
