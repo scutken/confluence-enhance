@@ -837,12 +837,23 @@
               theme: 'default',
               cdn: 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js'
             },
-            anchor: 2,
+            anchor: 0, // 关闭标题锚点
             lang: 'zh_CN',
             theme: {
               current: 'light',
             },
             after: function() {
+              // 设置所有链接在新标签页打开
+              const links = vditorContainer.querySelectorAll('a[href]');
+              links.forEach(link => {
+                // 只对外部链接设置新标签页打开，内部锚点链接保持原样
+                if (link.getAttribute('href').startsWith('http') ||
+                    link.getAttribute('href').startsWith('//')) {
+                  link.setAttribute('target', '_blank');
+                  link.setAttribute('rel', 'noopener noreferrer');
+                }
+              });
+
               // 渲染完成后生成大纲
               setTimeout(() => {
                 generateOutline(vditorContainer, outlineContainer);
